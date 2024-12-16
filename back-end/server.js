@@ -11,11 +11,10 @@ const io = new Server(server, {
 });
 
 const PORT = 5000;
-const API_URL = "https://open.er-api.com/v6/latest"; // API asosiy URL
+const API_URL = "https://open.er-api.com/v6/latest"; 
 
 app.use(cors());
 
-// Log uchun asosiy ruta
 app.get("/", (req, res) => {
   res.send("Currency Live Rates Socket.io Server");
 });
@@ -23,13 +22,12 @@ app.get("/", (req, res) => {
 io.on("connection", (socket) => {
   console.log("Client connected:", socket.id);
 
-  // Live ratesni olish
+  
   const fetchLiveRates = async () => {
     try {
       const response = await axios.get(`${API_URL}/USD`);
       const rates = response.data.rates;
 
-      // Live ratesni emit qilish
       socket.emit("live-rates", { rates });
     } catch (error) {
       console.error("Error fetching live rates:", error.message);
@@ -38,8 +36,7 @@ io.on("connection", (socket) => {
       });
     }
   };
-
-  // 5 soniyada bir marta ma'lumot yuborish
+  
   const interval = setInterval(fetchLiveRates, 5000);
 
   socket.on("disconnect", () => {
@@ -48,7 +45,6 @@ io.on("connection", (socket) => {
   });
 });
 
-// Serverni ishga tushirish
 server.listen(PORT, () => {
   console.log(`Socket.io server running on port ${PORT}`);
 });
