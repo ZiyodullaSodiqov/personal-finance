@@ -1,0 +1,32 @@
+.main{
+  width: 100%;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.nav-link {
+  margin: 0 15px;
+}
+
+.link-hx {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.link-hx:hover {
+  color: #fd7e14;
+}
+
+.app-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
